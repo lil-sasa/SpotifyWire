@@ -33,7 +33,7 @@ class Pesquisa extends Component
 
             //resposta da API salva em uma variável temporária
             $resultado = Spotify::searchTracks($this->entrada)->get();
-
+            //dd($resultado);
             $this->musicas = $resultado['tracks']['items'];
             $resultadosEncontrados = $resultado['tracks']['total'];
 
