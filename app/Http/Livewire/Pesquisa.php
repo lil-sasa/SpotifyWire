@@ -10,6 +10,7 @@ use Illuminate\Support\Arr;
 class Pesquisa extends Component
 {
 
+
     public $entrada = '';
 
     public $musicas = [];
@@ -24,17 +25,25 @@ class Pesquisa extends Component
     
     public function pesquisar()
     {
-        $this->musicas = [];
-        $this->paginaAtual = 1;
+        if($this->entrada != '')
+        {
+            //limpar os estados ao realizar uma nova pesquisa
+            $this->musicas = [];
+            $this->paginaAtual = 1;
 
-        $resultado = Spotify::searchTracks($this->entrada)->get();
+            //resposta da API salva em uma variável temporária
+            $resultado = Spotify::searchTracks($this->entrada)->get();
 
-        $this->musicas = $resultado['tracks']['items'];
-        $resultadosEncontrados = $resultado['tracks']['total'];
-        if($resultadosEncontrados > 0){
-            $this->ultimaPagina = ceil($resultadosEncontrados/$this->resultadosExibidosPorPagina);
+            $this->musicas = $resultado['tracks']['items'];
+            $resultadosEncontrados = $resultado['tracks']['total'];
+
+            
+            if($resultadosEncontrados > 0){
+                $this->ultimaPagina = ceil($resultadosEncontrados/$this->resultadosExibidosPorPagina);
+            } else {
+                $this->ultimaPagina = 1;
+            }   
         }
-
     }
     
     public function proxima() {
