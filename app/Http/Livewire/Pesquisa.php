@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Spotify;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Arr;
 
 class Pesquisa extends Component
 {
@@ -33,7 +32,7 @@ class Pesquisa extends Component
 
             //resposta da API salva em uma variável temporária
             $resultado = Spotify::searchTracks($this->entrada)->get();
-            //dd($resultado);
+            dd($resultado);
             $this->musicas = $resultado['tracks']['items'];
             $resultadosEncontrados = $resultado['tracks']['total'];
 
