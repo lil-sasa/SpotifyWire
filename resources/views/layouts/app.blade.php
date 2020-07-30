@@ -14,14 +14,16 @@
 
         <livewire:styles>
 
+        <livewire:scripts>
+
+        <script src="{{ asset('js/app.js') }}"></script>
+        @stack('scripts')
+
     </head>
     <body class="bg-gray-200">
 
         @yield('content')
 
-        <livewire:scripts>
-
-        @stack('scripts')
-        <script src="{{ asset('js/app.js') }}"></script>
+        
     </body>
 </html>

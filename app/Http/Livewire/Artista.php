@@ -13,6 +13,7 @@ class Artista extends Component
     public $genero;
     public $seguidores;
     public $identificador;
+    public $albuns = [];
 
     public function mount($id)
     {
@@ -24,6 +25,10 @@ class Artista extends Component
         $this->genero = $resultado['genres'][0];
         $this->seguidores = $resultado['followers']['total'];
 
+        $resposta = Spotify::artistAlbums($id)->get();
+        $resposta = array_to_object($resposta);
+        
+        $this->albuns = $resposta->items;
     }
 
     public function render()
