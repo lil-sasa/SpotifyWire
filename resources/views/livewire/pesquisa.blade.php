@@ -1,40 +1,40 @@
 <div class="relative">
 
     <div class="flex justify-center mt-5">
-        <img src="{{ secure_asset('img/spotifyWire.png') }}">
+        <img src="{{ asset('img/spotifyWire.png') }}">
     </div>
     {{-- Barra de pesquisa --}}
-    <div class="p-10 flex flex-wrap sys-app-notCollapsed justify-center"> 
-        <div class="p-4 w-50">
-            <div class="p-2 text-gray-900 bg-white rounded-lg shadow-lg w-full">
-    
-                <span class="px-2 mr-2 border-r border-gray-800">
-                    <img src="{{ secure_asset('img/logo.png') }}"
-                        alt="alt placeholder" class="w-8 h-8 -mt-1 inline mx-auto">
-                </span>
-                <span class="px-1 cursor-pointer hover:text-gray-700">
+    <div class="p-5 flex flex-wrap sys-app-notCollapsed justify-center"> 
+      
+            <div class="p-2 text-gray-900 bg-white rounded-lg shadow-lg sm:w-full md:w-full lg:w-1/2 xl:w-70 flex">
+                
+                    <span class="px-1 w-1/6">
+                        <img src="{{ asset('img/logo.png') }}"
+                            alt="alt placeholder" class="w-8 h-8 -mt-1 inline mx-auto">
+                    </span>
                     <input wire:offline.attr="disabled"
-                        class="bg-transparent border-none mr-3 px-2 leading-tight focus:outline-none "
+                        class="bg-transparent border-none px-2 leading-tight focus:outline-none hover:text-gray-700 w-3/6"
                         wire:model.debounce.10000ms="entrada"
                         wire:keydown.enter="pesquisar"
                         wire:loading.attr="disabled"
-                        type="text" placeholder="Procurar">
-                    
-                    <a wire:offline.attr="disabled"
-                    wire:click="pesquisar"
-                    wire:loading.attr="disabled"><i class="fas fa-search"></i></a>
-                </span>          
+                        type="text" placeholder="Procurar">   
+                    <a class="w-1/6 text-center mr-2 justify-end cursor-pointer"
+                        wire:offline.attr="disabled"
+                        wire:click="pesquisar"
+                        wire:loading.attr="disabled"><i class="fas fa-search"></i></a>
+
+
             </div>
-        </div>
+ 
     </div>
     {{-- !/Barra de pesquisa --}}
        
     {{-- Cards dos resultados --}}
-        <div class="flex flex-wrap p-3">
+        <div class="flex flex-wrap md:p-3 lg:p-3 sm:p-0 sm:w-full">
             @if(!empty($musicas))
 
                 @foreach ($musicas as $musica)
-                    <div class="max-w-sm flex-none bg-white shadow-lg rounded-lg my-4 mx-auto">
+                    <div class="max-w-xs flex-none bg-white shadow-lg rounded-lg my-4 mx-auto">
     
                         <img class="w-50 h-1/4 object-cover object-center rounded-t-md" src="{{$musica->album->images[0]->url }}" alt="avatar">
     
