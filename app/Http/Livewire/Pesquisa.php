@@ -31,8 +31,9 @@ class Pesquisa extends Component
             $this->paginaAtual = 1;
 
             //resposta da API salva em uma variável temporária
-            $resultado = Spotify::searchTracks($this->entrada)->get();
-            $resultado = json_decode(json_encode($resultado));
+            $resultado = Spotify::searchTracks($this->entrada)->get();  
+            $resultado = array_to_object($resultado);
+
             $this->musicas = $resultado->tracks->items;
             $resultadosEncontrados = $resultado->tracks->total;
 
@@ -49,10 +50,11 @@ class Pesquisa extends Component
         if($this->paginaAtual < $this->ultimaPagina)
         {
             $offset = $this->resultadosExibidosPorPagina * ($this->paginaAtual);
+            
             $resultado = Spotify::searchTracks($this->entrada)->offset($offset)->get();
-    
-            $this->musicas = $resultado['tracks']['items'];
+            $resultado = array_to_object($resultado);
 
+            $this->musicas = $resultado->tracks->items;
             $this->paginaAtual += 1;
         }
     }
@@ -62,9 +64,11 @@ class Pesquisa extends Component
         {
             $this->paginaAtual -= 1;
             $offset = $this->resultadosExibidosPorPagina * ($this->paginaAtual - 1);
+
             $resultado = Spotify::searchTracks($this->entrada)->offset($offset)->get();
+            $resultado = array_to_object($resultado);
     
-            $this->musicas = $resultado['tracks']['items'];
+            $this->musicas = $resultado->tracks->items;
 
         }
     }
