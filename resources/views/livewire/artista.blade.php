@@ -43,7 +43,7 @@
     {{-- !/Albuns --}}
 
 
-    <div class="absolute top-0 left-0 m-5">
+    <div class="absolute top-0 left-0 mx-5 z-10">
         <a href="/">
             <span class=" hover:bg-green-600 hover:cursor-pointer tracking-wider text-white bg-green-500 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold" title="">
                 <i class="fas fa-undo" aria-hidden="true"></i> Voltar
