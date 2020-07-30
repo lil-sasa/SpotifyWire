@@ -1,7 +1,7 @@
 <div class="relative">
 
     <div class="flex justify-center mt-5">
-        <img src="{{ asset('img/spotifyWire.png') }}">
+        <img src="{{ secure_asset('img/spotifyWire.png') }}">
     </div>
     {{-- Barra de pesquisa --}}
     <div class="p-5 flex flex-wrap sys-app-notCollapsed justify-center mb-8"> 
@@ -9,7 +9,7 @@
             <div class="p-2 text-gray-900 bg-white rounded-lg shadow-lg sm:w-full md:w-full lg:w-1/2 xl:w-70 flex">
                 
                     <span class="px-1 w-1/6">
-                        <img src="{{ asset('img/logo.png') }}"
+                        <img src="{{ secure_asset('img/logo.png') }}"
                             alt="alt placeholder" class="w-8 h-8 -mt-1 inline mx-auto">
                     </span>
                     <input wire:offline.attr="disabled"
