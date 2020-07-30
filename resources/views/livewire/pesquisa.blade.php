@@ -4,7 +4,7 @@
         <img src="{{ asset('img/spotifyWire.png') }}">
     </div>
     {{-- Barra de pesquisa --}}
-    <div class="p-5 flex flex-wrap sys-app-notCollapsed justify-center"> 
+    <div class="p-5 flex flex-wrap sys-app-notCollapsed justify-center mb-8"> 
       
             <div class="p-2 text-gray-900 bg-white rounded-lg shadow-lg sm:w-full md:w-full lg:w-1/2 xl:w-70 flex">
                 
@@ -130,6 +130,56 @@
         </div>
         {{-- !/Paginação --}}
 
+        {{-- Footer --}}
+        <div class="container bg-green-100 p-8">
+            <div class="sm:flex mb-4">
+          <div class="sm:w-1/4 h-auto">
+              <div class="text-green mb-2 text-green-500">Favoritos</div>
+              <ul class="list-reset leading-normal" id="lista_favoritos">
+              </ul>
+          </div>
+          <div class="sm:w-1/4 h-auto sm:mt-0 mt-8">
+              <div class="mb-2 text-indigo">Appmasters</div>
+              <ul class="list-reset leading-normal">
+                  <li class="hover:text-indigo text-grey-darker"><a href="https://appmasters.io/pt/" target="_blank">Website</a></li>
+                  <li class="hover:text-indigo text-grey-darker"><a href="https://www.instagram.com/appmasters.io/" target="_blank"> Instagram</a></li>
+                  <li class="hover:text-indigo text-grey-darker"><a href="https://www.linkedin.com/company/appmasters.io/" target="_blank">Linkedin</a></li>
+              </ul>
+        
+            <div class="text-blue mb-2 mt-4">Igor Sasaoka</div>
+              <ul class="list-reset leading-normal">
+                  <li class="hover:text-blue text-grey-darker"><a href="https://www.instagram.com/sasaoka.js/" target="_blank">Instagram</a></li>
+                  <li class="hover:text-blue text-grey-darker"><a href="https://www.linkedin.com/in/igor-sasaoka/" target="_blank">Linkedin</a></li>
+                  <li class="hover:text-blue text-grey-darker"><a href="https://sasaoka.tech" target="_blank">Website</a></li>
+              </ul>
+        
+          </div>
+          <div class="sm:w-1/4 h-auto sm:mt-0 mt-8">
+                    <div class="text-red mb-2">Tecnologias Utilizadas</div>
+              <ul class="list-reset leading-normal">
+                  <li class="hover:text-red text-grey-darker"><a href="https://laravel.com/" target="_blank">Laravel</a></li>
+                  <li class="hover:text-red text-grey-darker"><a href="https://laravel-livewire.com/" target="_blank">LiveWire</a></li>
+                  <li class="hover:text-red text-grey-darker"><a href="https://github.com/turbolinks/turbolinks" target="_blank">TurboLinks</a></li>
+              </ul>
+        
+            <div class="text-green-400 mb-2 mt-4">API</div>
+              <ul class="list-reset leading-normal">
+                  <li class="hover:text-green-400 text-grey-darker"><a href="https://developer.spotify.com/" target="_blank">Spotify</a></li>
+              </ul>
+        
+        
+          </div>
+          <div class="sm:w-1/2 sm:mt-0 mt-8 h-auto">
+            <div class="text-green mb-2">Projeto</div>
+            <p classxt="te-grey-darker leading-normal">Este é um projeto ficcional para fins de processo seletivo :)</p>
+            
+        </div>
+    
+        
+        </div>
+        </div>
+        {{-- !/Footer --}}
+
         {{-- Loading --}}
         <div wire:loading>
             <div class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50">
@@ -147,9 +197,41 @@
         <div wire:offline>
             Sem conexão com a internet, verifique antes de continuar.
         </div>
-        {{-- !/Offline --}}    
+        {{-- !/Offline --}}
+
 </div>
 
 
 
 
+@push('scripts')
+<script type="text/javascript">
+    
+    function preencherFavoritos() {
+        const items = { ...localStorage };
+        let ul = document.getElementById('lista_favoritos');
+        Object.entries(items).forEach(element => {
+
+            let li = document.createElement('li');
+            let a = document.createElement('a');
+            
+            let texto = document.createTextNode('☆' + element[1]);
+
+            a.setAttribute('class','hover:text-green-500 text-grey-darker');
+            a.href = 'artist/' + element[0];
+
+            a.appendChild(texto);
+            li.appendChild(a);
+            ul.appendChild(li);
+
+        });
+    }
+    document.addEventListener("turbolinks:load", function() {
+        
+        preencherFavoritos();
+    })
+
+
+
+</script>
+@endpush
