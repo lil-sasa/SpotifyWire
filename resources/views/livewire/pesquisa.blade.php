@@ -48,7 +48,7 @@
                                 <i class="fa fa-users"></i>
                                 <h1 class="px-2 text-sm">
                                     @foreach ($musica->artists as $artista)
-                                        ☆{{ $artista->name }}
+                                        <a href="{{ route('artista', $artista->id) }}">☆{{ $artista->name }}</a>
                                     @endforeach
                                 </h1>
                             </div>

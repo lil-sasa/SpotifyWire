@@ -14,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
+
+//Route::get('/artista/{id}', 'ArtistaController@show')->name('artista');
+
+Route::livewire('/artist/{id}', 'artista')->name('artista');
